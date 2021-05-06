@@ -1,6 +1,6 @@
 class Navigation {
     constructor(links, pages) {
-        this.linkPaths = [];
+        // this.linkPaths = [];
         this.currentPage = null;
         this.links = links;
         this.pages = pages;
