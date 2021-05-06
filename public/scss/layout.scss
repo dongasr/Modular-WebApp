@@ -6,7 +6,9 @@
 
 .page-container {
     margin: 4em;
-    text-align: center;
+    &#home {
+        text-align: center;
+    }
     &:not(#home) {
         display: none;
     }

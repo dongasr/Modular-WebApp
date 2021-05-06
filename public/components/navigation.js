@@ -1,38 +1,33 @@
-const links = document.querySelectorAll('nav > ul > li > a');
-const pages = document.querySelectorAll('.page-container');
-// console.log(links)
-
-
 class Navigation {
-  constructor() {
-    this.linkPaths = [] ;
-    this.currentPage = null;
-    links.forEach((link) => {
-      link.addEventListener('click', function(){
-        let pageId = link.href.split("#")[1];
+    constructor(links, pages) {
+        this.linkPaths = [];
+        this.currentPage = null;
+        this.links = links;
+        this.pages = pages;
+    }
+
+    setPage(pageId) {
         this.currentPage = pageId;
-        setPage(pageId)
-      });
-    });
-  }
-}
+        console.log(this.currentPage)
 
-function setPage(pageId) {
-    links.forEach((link) => {
-      link.classList.remove('active');
-      if(link.href.split("#")[1] == pageId) {
-       link.classList.add('active'); 
-      }
-    });
+        this.links.forEach((link) => {
+            link.classList.remove('active');
+            if (this.getHash(link) == pageId) {
+                link.classList.add('active');
+            }
+        });
 
-    pages.forEach((page) => {
-      page.style.display = 'none';
-    })
+        this.pages.forEach((page) => {
+            page.classList.remove('active');
+            page.style.display = 'none';
+        })
 
+        document.getElementById(pageId).style.display = 'block'
+    }
 
-    document.getElementById(pageId).style.display = 'block'
-    
-  console.log("Going to " + pageId)
+    getHash(link) {
+        return link.href.split("#")[1];
+    }
 }
 
 export default Navigation;
